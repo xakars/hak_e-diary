@@ -4,16 +4,11 @@ from django.core.exceptions import MultipleObjectsReturned, ObjectDoesNotExist
 
 
 def fix_marks(schoolkid):
-    all_bad_marks = Mark.objects.filter(schoolkid=schoolkid, points__in=[2, 3])
-    for mark in all_bad_marks:
-        mark.points = 5
-        mark.save()
+    Mark.objects.filter(schoolkid=schoolkid, points__in=[2, 3]).update(points=5)
 
 
 def remove_chastisements(schoolkid):
-    all_chastisement = Chastisement.objects.filter(schoolkid=schoolkid)
-    for chastisement in all_chastisement:
-        chastisement.delete()
+    Chastisement.objects.filter(schoolkid=schoolkid).delete()
 
 
 def create_commendation(name, subject_title):
