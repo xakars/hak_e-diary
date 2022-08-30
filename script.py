@@ -21,7 +21,7 @@ def create_commendation(name, subject_title):
 
     first_lesson = Lesson.objects.filter(year_of_study=schoolkid.year_of_study,
                                          group_letter=schoolkid.group_letter,
-                                        subject__title=subject_title).order_by('-date').first()
+                                         subject__title=subject_title).order_by('-date').first()
 
     chastisements = [
         "С каждым разом у тебя получается всё лучше!",
